@@ -2,6 +2,7 @@ ALPHA, alpha, numer = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"
 wordDict = open("wordDict.txt").read().splitlines()
 commonWords = open("CommonWords.txt").read().splitlines()
 encryptedString = input("Enter your encrypted word or sentence: ")
+
 def cipher(key, inp):
     key *= -1
     String = ""
@@ -16,6 +17,7 @@ def cipher(key, inp):
         String += char
     return String
 possibilities = []
+
 def value(dString):
     value = 1
     if " " in dString:
@@ -28,11 +30,13 @@ def value(dString):
         if word in commonWords:
             value *= 10
     return value
+
 for key in range(1, 26):
     decryptedString = cipher(key, encryptedString)
     possibilities.append(
         (value(decryptedString), decryptedString, key)
     )
+    
 possibilities.sort()
 possibilities.reverse()
 print("Your cipher is most likely:")
@@ -43,3 +47,4 @@ print()
 print("Other possibilities are: ")
 for possible in possibilities[1:11]:
     print("answer:", possible[1], "key:", possible[2])
+    
